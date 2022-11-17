@@ -3,7 +3,6 @@ using namespace std;
 #include <locale.h>
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>
 #include "produtolib.h"
 
 
@@ -12,19 +11,19 @@ int main() {
     ListaE lista;
     Produto *prod;
     int operacao;
-
     inicializa_lista(lista);
+
     do {
-        system("cls");
-    prod=lista.inicio;
-    while(prod!=NULL){
+      //system("cls");
+    //prod=lista.inicio;
+    //while(prod->proximo!=NULL){
         cout<<prod->Codigo<<endl;
         cout<<prod->Nome<<endl;
         cout<<prod->Preco<<endl;
         cout<<endl;
-        prod=prod->proximo;
-        }
-      cout<< " ________________________________________";
+        //prod=prod->proximo;
+    //}
+      cout<< "\n ________________________________________";
       cout<< "\n|\t\t\t\t\t|";
       cout << "\n|\tSelecione uma operação:\t\t|";
       cout<< "\n|\t1 - Inserir item\t\t|";
@@ -38,12 +37,11 @@ int main() {
     switch(operacao) {
       //OPERAÇÃO DE INSERÇÃO-----------------------------------------------------------------------
       case 1:
-        for(int i=0;i<3;i++){
+        for(int i=0;i<2;i++){
             cadastra_elemento_lista(lista,prod);
-
             insere_elemento_lista(lista,prod);
         }
-       break;
+        break;
         //OPERAÇÃO DE REMOÇÃO----------------------------------------------------------------------
         /*case 2:
 
