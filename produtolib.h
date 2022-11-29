@@ -21,18 +21,18 @@ bool inicializa_lista (ListaE &lista){
 
 bool cadastra_elemento_lista(ListaE &lista, Produto *&prod){
     prod=new Produto;
-    cout<<"Digite o código do produto: ";
+    cout<<"Digite o cÃ³digo do produto: ";
     cin>>prod->Codigo;
     cout<<"Digite o nome do produto: ";
     cin>>prod->Nome;
-    cout<<"Digite o preço do produto: ";
+    cout<<"Digite o preÃ§o do produto: ";
     cin>>prod->Preco;
     prod->proximo=NULL;
 
     return true;
 }
 
-//Protótipo da inserção
+//ProtÃ³tipo da inserÃ§Ã£o
 bool insere_elemento_lista(ListaE &lista, Produto *prod){
 
     prod->proximo=lista.inicio;
@@ -40,18 +40,24 @@ bool insere_elemento_lista(ListaE &lista, Produto *prod){
     return true;
 }
 
-int busca_elemento_lista(ListaE &lista, Produto *prod, int busca){
-    while(prod!=NULL){
-        if(prod->Codigo==busca)
-            return prod->Preco;
+bool remove_elemento_lista(ListaE &lista, Produto *prod, int codigo){
+    prod=lista.inicio;
+    Produto *aux;
+    while(prod->proximo->Codigo!=codigo && prod->proximo!=NULL){
+        if(prod->proximo->Codigo==codigo){
+            aux = prod->proximo->proximo;
+            delete prod->proximo;
+            prod->proximo = aux;
+        }
         prod=prod->proximo;
     }
-    return 0.0;
+    return true;
 }
 
-float consulta_elemento_lista(ListaE &lista, Produto *prod, int busca){
+float consulta_elemento_lista(ListaE &lista, Produto *prod, int codigo){
+    prod=lista.inicio;
     while(prod!=NULL){
-        if(prod->Codigo==busca)
+        if(prod->Codigo==codigo)
             return prod->Preco;
         prod=prod->proximo;
     }
