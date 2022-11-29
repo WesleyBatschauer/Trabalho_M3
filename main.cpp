@@ -3,6 +3,7 @@ using namespace std;
 #include <locale.h>
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 #include "produtolib.h"
 
 
@@ -10,22 +11,22 @@ int main() {
     setlocale(LC_ALL,"Portuguese");
     ListaE lista;
     Produto *prod;
-    int operacao;
+    int operacao, codigo;
     inicializa_lista(lista);
 
     do {
-      //system("cls");
-    //prod=lista.inicio;
-    //while(prod->proximo!=NULL){
-        cout<<prod->Codigo<<endl;
-        cout<<prod->Nome<<endl;
-        cout<<prod->Preco<<endl;
-        cout<<endl;
-        //prod=prod->proximo;
-    //}
+        system("cls");
+        prod=lista.inicio;
+        while(prod!=NULL){
+            cout<<prod->Codigo<<endl;
+            cout<<prod->Nome<<endl;
+            cout<<prod->Preco<<endl;
+            cout<<endl;
+            prod=prod->proximo;
+        }
       cout<< "\n ________________________________________";
       cout<< "\n|\t\t\t\t\t|";
-      cout << "\n|\tSelecione uma opera��o:\t\t|";
+      cout << "\n|\tSelecione uma operação:\t\t|";
       cout<< "\n|\t1 - Inserir item\t\t|";
       cout<< "\n|\t2 - Remover item\t\t|";
       cout<< "\n|\t3 - Pesquisar\t\t\t|";
@@ -33,25 +34,30 @@ int main() {
       cout<< "\n|_______________________________________|\n";
       cin >> operacao;
 
-      //ESCOLHE A OPERA��O A SER REALIZADA
+      //ESCOLHE A OPERAÇÃO A SER REALIZADA
     switch(operacao) {
-      //OPERA��O DE INSER��O-----------------------------------------------------------------------
+      //OPERAÇÃO DE INSERÇÃO-----------------------------------------------------------------------
       case 1:
         for(int i=0;i<2;i++){
             cadastra_elemento_lista(lista,prod);
             insere_elemento_lista(lista,prod);
         }
         break;
-        //OPERA��O DE REMO��O----------------------------------------------------------------------
-        /*case 2:
-
+        //OPERAÇÃO DE REMOÇÃO----------------------------------------------------------------------
+        case 2:
+            cout<<"Digite o código do produto a ser removido: ";
+            cin>>codigo;
+            remove_elemento_lista(lista,prod,codigo);
         break;
-        //OPERA��O DE PESQUISA---------------------------------------------------------------------
+        //OPERAÇÃO DE PESQUISA---------------------------------------------------------------------
         case 3:
-
+            cout<<"Digite o código do produto a ser pesquisado: ";
+            cin>>codigo;
+            cout<<consulta_elemento_lista(lista,prod,codigo)<<endl;
+            system("pause");
         break;
-        //OPERA��O DE ENCERRAR--------------------------------------------------------------------
-        case 4:
+        //OPERAÇÃO DE ENCERRAR--------------------------------------------------------------------
+        /*case 4:
         break;*/
     }
     }
